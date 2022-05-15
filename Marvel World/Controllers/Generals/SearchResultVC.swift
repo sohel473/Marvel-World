@@ -61,4 +61,28 @@ extension SearchResultVC: UICollectionViewDelegate, UICollectionViewDataSource {
         //        cell.backgroundColor = .blue
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let character = characters[indexPath.row]
+        guard let character_name = character.name, let character_description = character.description
+        else {
+            return
+        }
+        APICaller.shared.getMovies(query: character_name + " variants comics history") { [weak self] result in
+            guard let self = self else { return }
+//            print("ININ")
+            switch result {
+            case .success(let videoElement):
+                print(character_name)
+//                print(character_description)
+//                print(videoElement.id.videoId)
+                self.delegate?.SearchResultVCdidTap(CharacterPreviewModel(name: character_name, description: character_description, youtubeOverview: videoElement))
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
 }

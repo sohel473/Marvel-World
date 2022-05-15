@@ -36,10 +36,7 @@ class TitleCollectionViewCell: UICollectionViewCell {
     
     func configure(with model: String) {
         
-        guard let url = URL(string: "\(model)/standard_large.jpg") else {
-            print("Image Not Found")
-            return
-        }
+        guard let url = URL(string: "\(model)/standard_large.jpg") else { return }
 //        print(url)
         posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "ImageNotAvailable"))
 //        print(model)

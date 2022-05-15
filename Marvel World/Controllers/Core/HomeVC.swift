@@ -85,6 +85,31 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         150
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let character = characters[indexPath.row]
+        guard let character_name = character.name, let character_description = character.description
+        else {
+            return
+        }
+        APICaller.shared.getMovies(query: character_name + " variants comics history") { [weak self] result in
+            guard let self = self else { return }
+//            print("ININ")
+            switch result {
+            case .success(let videoElement):
+                DispatchQueue.main.async {
+//                    print("INININ")
+                    let vc = CharacterPreviewVC()
+                    vc.configure(with: CharacterPreviewModel(name: character_name, description: character_description, youtubeOverview: videoElement))
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 }
 
 //MARK: - UISearchController Updater
@@ -97,7 +122,7 @@ extension HomeVC: UISearchResultsUpdating {
         !query.trimmingCharacters(in: .whitespaces).isEmpty,
               query.trimmingCharacters(in: .whitespaces).count >= 3,
         let resultController = searchController.searchResultsController as? SearchResultVC else { return }
-//        resultController.delegate = self
+        resultController.delegate = self
         
         APICaller.shared.search(with: query) { result in
             DispatchQueue.main.async {
@@ -106,12 +131,23 @@ extension HomeVC: UISearchResultsUpdating {
                     resultController.characters = characters
                     resultController.searchResultCollectionView.reloadData()
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    print(error)
                 }
             }
         }
         
     }
     
+}
+
+extension HomeVC: SearchResultVCDelegate {
     
+    func SearchResultVCdidTap(_ viewModel: CharacterPreviewModel) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            let vc = CharacterPreviewVC()
+            vc.configure(with: viewModel)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

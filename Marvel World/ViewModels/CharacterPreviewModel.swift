@@ -9,7 +9,7 @@ import Foundation
 
 struct CharacterPreviewModel {
     let name: String
-    let overview: String
+    let description: String
     let youtubeOverview: VideoElement
 }
 
