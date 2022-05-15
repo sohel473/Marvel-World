@@ -18,7 +18,6 @@
 		7DA3E3D22830EC7900DA4C89 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7DA3E3D12830EC7900DA4C89 /* SDWebImageMapKit */; };
 		7DA3E3D42830ECA500DA4C89 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3E3D32830ECA500DA4C89 /* Extensions.swift */; };
 		7DA3E3D82830ECFF00DA4C89 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3E3D72830ECFF00DA4C89 /* MainTabBarVC.swift */; };
-		7DA3E3DA2830ED1B00DA4C89 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3E3D92830ED1B00DA4C89 /* HomeVC.swift */; };
 		7DA3E3E12830EE3300DA4C89 /* CharactersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3E3E02830EE3300DA4C89 /* CharactersVC.swift */; };
 		7DA3E3E32830EE4000DA4C89 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3E3E22830EE4000DA4C89 /* SearchVC.swift */; };
 		7DA3E3E52830EE6700DA4C89 /* DownloadsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3E3E42830EE6700DA4C89 /* DownloadsVC.swift */; };
@@ -39,7 +38,6 @@
 		7DA3E3C22830E8D200DA4C89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DA3E3D32830ECA500DA4C89 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7DA3E3D72830ECFF00DA4C89 /* MainTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
-		7DA3E3D92830ED1B00DA4C89 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		7DA3E3E02830EE3300DA4C89 /* CharactersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersVC.swift; sourceTree = "<group>"; };
 		7DA3E3E22830EE4000DA4C89 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		7DA3E3E42830EE6700DA4C89 /* DownloadsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsVC.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				7DA3E3D72830ECFF00DA4C89 /* MainTabBarVC.swift */,
-				7DA3E3D92830ED1B00DA4C89 /* HomeVC.swift */,
 				7DA3E3E02830EE3300DA4C89 /* CharactersVC.swift */,
 				7DA3E3E22830EE4000DA4C89 /* SearchVC.swift */,
 				7DA3E3E42830EE6700DA4C89 /* DownloadsVC.swift */,
@@ -250,7 +247,6 @@
 				7DA3E3D82830ECFF00DA4C89 /* MainTabBarVC.swift in Sources */,
 				7DA3E3E52830EE6700DA4C89 /* DownloadsVC.swift in Sources */,
 				7DA3E3B42830E8D000DA4C89 /* SceneDelegate.swift in Sources */,
-				7DA3E3DA2830ED1B00DA4C89 /* HomeVC.swift in Sources */,
 				7D8B163E28310C640047D5CB /* Character.swift in Sources */,
 				7DA3E3BC2830E8D000DA4C89 /* Marvel_World.xcdatamodeld in Sources */,
 				7DA3E3EB2830FF7F00DA4C89 /* TitleCollectionViewCell.swift in Sources */,

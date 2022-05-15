@@ -14,14 +14,15 @@ class TitleCollectionViewCell: UICollectionViewCell {
     
     private let posterImageView: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleAspectFit
+//        image.image = UIImage(named: "ImageNotAvailable")
         return image
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(posterImageView)
-        contentView.backgroundColor = .yellow
+//        contentView.backgroundColor = .yellow
     }
     
     required init?(coder: NSCoder) {
@@ -34,9 +35,13 @@ class TitleCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with model: String) {
-        guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model)") else { return }
+        
+        guard let url = URL(string: "\(model)/standard_large.jpg") else {
+            print("Image Not Found")
+            return
+        }
 //        print(url)
-        posterImageView.sd_setImage(with: url, completed: nil)
+        posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "ImageNotAvailable"))
 //        print(model)
     }
 }

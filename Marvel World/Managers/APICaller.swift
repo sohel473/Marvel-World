@@ -31,11 +31,11 @@ class APICaller {
         }.joined()
     }
     
-    func getCharacters() {
-        
+    //MARK: - Get Characters
+    func getCharacters(completion: @escaping(Result<[Character], Error>) -> Void) {
         let ts = String(Date().timeIntervalSince1970)
         let hash = MD5(string: "\(ts)\(API_KEY_Privat)\(API_KEY_Public)")
-        let endpoint = "\(baseURL)/characters?orderBy=-modified&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
+        let endpoint = "\(baseURL)/characters?limit=100&orderBy=name&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
         
         guard let url = URL(string: endpoint) else { return }
         
@@ -47,17 +47,18 @@ class APICaller {
             }
             do {
                 //                print("IN")
-                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-//                let decoder = JSONDecoder()
-//                let results = try decoder.decode(TrendingTitleResponse.self, from: data)
-//                completion(.success(results.results))
-                print(results)
+//                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                let decoder = JSONDecoder()
+                let results = try decoder.decode(CharacterResponse.self, from: data)
+                completion(.success(results.data.results))
+//                print(results.data.results)
                 
             } catch {
-//                completion(.failure(APIError.failedToGetData))
-                print(error)
+                completion(.failure(APIError.failedToGetData))
+//                print(error)
             }
         }
         task.resume()
     }
+    
 }
