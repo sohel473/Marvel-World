@@ -35,7 +35,7 @@ class APICaller {
         
         let ts = String(Date().timeIntervalSince1970)
         let hash = MD5(string: "\(ts)\(API_KEY_Privat)\(API_KEY_Public)")
-        let endpoint = "\(baseURL)/characters?ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
+        let endpoint = "\(baseURL)/characters?orderBy=-modified&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
         
         guard let url = URL(string: endpoint) else { return }
         
