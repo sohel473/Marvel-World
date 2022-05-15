@@ -35,7 +35,7 @@ class APICaller {
     func getCharacters(completion: @escaping(Result<[Character], Error>) -> Void) {
         let ts = String(Date().timeIntervalSince1970)
         let hash = MD5(string: "\(ts)\(API_KEY_Privat)\(API_KEY_Public)")
-        let endpoint = "\(baseURL)/characters?limit=100&orderBy=name&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
+        let endpoint = "\(baseURL)/characters?limit=50&orderBy=-modified&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
         
         guard let url = URL(string: endpoint) else { return }
         
@@ -56,6 +56,38 @@ class APICaller {
             } catch {
                 completion(.failure(APIError.failedToGetData))
 //                print(error)
+            }
+        }
+        task.resume()
+    }
+    
+    //MARK: - Search Characters
+    func search(with query: String, completion: @escaping(Result<[Character], Error>) -> Void) {
+        
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+//        print(query)
+        let ts = String(Date().timeIntervalSince1970)
+        let hash = MD5(string: "\(ts)\(API_KEY_Privat)\(API_KEY_Public)")
+        let endpoint = "\(baseURL)/characters?nameStartsWith=\(query)&limit=50&orderBy=-modified&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
+        //        print(endpoint)
+        
+        guard let url = URL(string: endpoint) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data,
+                  let response = response as? HTTPURLResponse, response.statusCode == 200,
+                  error == nil else {
+                return
+            }
+            do {
+                //                print("IN")
+                let decoder = JSONDecoder()
+                let results = try decoder.decode(CharacterResponse.self, from: data)
+                completion(.success(results.data.results))
+                //                print(results.results[0].original_title)
+                
+            } catch {
+                completion(.failure(APIError.failedToGetData))
             }
         }
         task.resume()

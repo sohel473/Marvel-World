@@ -13,16 +13,12 @@ class MainTabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let characterVC = UINavigationController(rootViewController: CharactersVC())
-        let searchVC = UINavigationController(rootViewController: SearchVC())
+        let homeVC = UINavigationController(rootViewController: HomeVC())
         let downloadsVC = UINavigationController(rootViewController: DownloadsVC())
         
         
-        characterVC.tabBarItem.title = "Characters"
-        characterVC.tabBarItem.image = UIImage(systemName: "person.3.sequence.fill")
-        
-        searchVC.tabBarItem.title = "Search"
-        searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        homeVC.tabBarItem.title = "Characters"
+        homeVC.tabBarItem.image = UIImage(systemName: "person.3.sequence.fill")
         
         downloadsVC.tabBarItem.title = "Downloads"
         downloadsVC.tabBarItem.image = UIImage(systemName: "arrow.down")
@@ -30,7 +26,7 @@ class MainTabBarVC: UITabBarController {
         tabBar.tintColor = .label
         
         
-        setViewControllers([characterVC, searchVC, downloadsVC], animated: true)
+        setViewControllers([homeVC, downloadsVC], animated: true)
     }
 
 }

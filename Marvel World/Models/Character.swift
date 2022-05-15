@@ -18,7 +18,6 @@ struct CharacterData: Codable {
 struct Character: Codable {
     let id: Int
     let name: String?
-    let title: String?
     let description: String?
     let thumbnail: Thumbnail
     let urls: [URLElement]
