@@ -42,6 +42,8 @@ class HomeVC: UIViewController {
         
         headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 530))
         homeTable.tableHeaderView = headerView
+        
+        APICaller.shared.getCharacters()
     }
     
     private func configureNavbar() {
@@ -93,7 +95,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as! CollectionViewTableViewCell
         return cell
     }
     
