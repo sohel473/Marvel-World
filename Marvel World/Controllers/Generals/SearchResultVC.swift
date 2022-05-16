@@ -78,7 +78,7 @@ extension SearchResultVC: UICollectionViewDelegate, UICollectionViewDataSource {
                 print(character_name)
 //                print(character_description)
 //                print(videoElement.id.videoId)
-                self.delegate?.SearchResultVCdidTap(CharacterPreviewModel(name: character_name, description: character_description, youtubeOverview: videoElement))
+                self.delegate?.SearchResultVCdidTap(CharacterPreviewModel(name: character_name, description: character_description, urls: character.urls, youtubeOverview: videoElement))
             case .failure(let error):
                 print(error)
             }

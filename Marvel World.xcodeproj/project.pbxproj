@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D15ABC02832578500B81971 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D15ABBF2832578500B81971 /* DataPersistence.swift */; };
 		7D8B163A2831033C0047D5CB /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B16392831033C0047D5CB /* APICaller.swift */; };
 		7D8B163E28310C640047D5CB /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B163D28310C640047D5CB /* Character.swift */; };
 		7DA029E7283153F200D55703 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA029E6283153F200D55703 /* HomeVC.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D15ABBF2832578500B81971 /* DataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataPersistence.swift; path = ../../../../../Downloads/DataPersistence.swift; sourceTree = "<group>"; };
 		7D8B16392831033C0047D5CB /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		7D8B163D28310C640047D5CB /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		7DA029E6283153F200D55703 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				7D8B16392831033C0047D5CB /* APICaller.swift */,
+				7D15ABBF2832578500B81971 /* DataPersistence.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				7DA3E3B42830E8D000DA4C89 /* SceneDelegate.swift in Sources */,
 				7DB89C78283181710096D6E0 /* CharacterPreviewVC.swift in Sources */,
 				7D8B163E28310C640047D5CB /* Character.swift in Sources */,
+				7D15ABC02832578500B81971 /* DataPersistence.swift in Sources */,
 				7DA029F128315D0000D55703 /* YoutubeSearchResponse.swift in Sources */,
 				7DA029ED2831580300D55703 /* CharacterViewModel.swift in Sources */,
 				7DA3E3BC2830E8D000DA4C89 /* Marvel_World.xcdatamodeld in Sources */,

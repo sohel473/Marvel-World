@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CharacterItem" representedClassName="CharacterItem" syncable="YES" codeGenerationType="class">
+        <attribute name="descrption" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ThumbnailItem" inverseName="character" inverseEntity="ThumbnailItem"/>
+        <relationship name="urls" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="URLItem" inverseName="character" inverseEntity="URLItem"/>
+    </entity>
+    <entity name="ThumbnailItem" representedClassName="ThumbnailItem" syncable="YES" codeGenerationType="class">
+        <attribute name="path" optional="YES" attributeType="String"/>
+        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterItem" inverseName="thumbnail" inverseEntity="CharacterItem"/>
+    </entity>
+    <entity name="URLItem" representedClassName="URLItem" syncable="YES" codeGenerationType="class">
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterItem" inverseName="urls" inverseEntity="CharacterItem"/>
+    </entity>
+    <elements>
+        <element name="CharacterItem" positionX="-206.04296875" positionY="-177.3671875" width="128" height="118"/>
+        <element name="ThumbnailItem" positionX="124.09765625" positionY="-199.53515625" width="128" height="73"/>
+        <element name="URLItem" positionX="115.28125" positionY="-43.9453125" width="128" height="73"/>
+    </elements>
 </model>

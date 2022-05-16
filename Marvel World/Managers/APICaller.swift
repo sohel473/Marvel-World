@@ -68,7 +68,7 @@ class APICaller {
 //        print(query)
         let ts = String(Date().timeIntervalSince1970)
         let hash = MD5(string: "\(ts)\(API_KEY_Privat)\(API_KEY_Public)")
-        let endpoint = "\(baseURL)/characters?nameStartsWith=\(query)&limit=50&orderBy=-modified&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
+        let endpoint = "\(baseURL)/characters?nameStartsWith=\(query)&limit=10&orderBy=-modified&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
         //        print(endpoint)
         
         guard let url = URL(string: endpoint) else { return }
@@ -97,11 +97,11 @@ class APICaller {
     func getMovies(query: String, completion: @escaping(Result<VideoElement, Error>) -> Void) {
         
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
-        print(query)
+//        print(query)
         let endpoint = "\(YouTube_baseURL)q=\(query)&key=\(YouTube_API_KEY2)"
-        print(endpoint)
+//        print(endpoint)
         guard let url = URL(string: endpoint) else {
-            print("Youtube URL error")
+//            print("Youtube URL error")
             return
         }
         

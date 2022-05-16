@@ -10,6 +10,8 @@ import WebKit
 import SafariServices
 
 class CharacterPreviewVC: UIViewController {
+    
+    var urls: [URLElement]?
 
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -31,17 +33,32 @@ class CharacterPreviewVC: UIViewController {
     
     private let detailsButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Details", for: .normal)
+        button.setTitle("Detail", for: .normal)
 //        button.layer.borderColor = UIColor.white.cgColor
         button.backgroundColor = .red
         button.layer.borderWidth = 1
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
+//        button.addTarget(self, action: #selector(presentSafariVC(from:)), for: .touchUpInside)
         return button
     }()
     
-    private let comicButton: UIButton = {
+    
+    
+//    private let wikiButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("Wiki", for: .normal)
+////        button.layer.borderColor = UIColor.white.cgColor
+//        button.backgroundColor = .red
+//        button.layer.borderWidth = 1
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.layer.cornerRadius = 8
+//        button.layer.masksToBounds = true
+//        return button
+//    }()
+    
+    let comicButton: UIButton = {
         let button = UIButton()
         button.setTitle("Comics", for: .normal)
 //        button.layer.borderColor = UIColor.white.cgColor
@@ -52,6 +69,13 @@ class CharacterPreviewVC: UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
+    
+//    private let stackView: UIStackView = {
+//        let stack = UIStackView(arrangedSubviews: [])
+//        stack.axis = .horizontal
+//        stack.distribution = .equalSpacing
+//        return stack
+//    }()
     
     
     private let webView: WKWebView = {
@@ -67,6 +91,7 @@ class CharacterPreviewVC: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(overviewLabel)
         view.addSubview(detailsButton)
+//        view.addSubview(wikiButton)
         view.addSubview(comicButton)
         view.addSubview(webView)
         
@@ -77,16 +102,32 @@ class CharacterPreviewVC: UIViewController {
     func configure(with model: CharacterPreviewModel) {
         titleLabel.text = model.name
         overviewLabel.text = model.description == "" ? "No description available for this character" : model.description
+        self.urls = model.urls
+        print(model.name)
+        print(urls!)
+        
+        for (i, button) in [detailsButton, comicButton].enumerated() {
+            button.setTitle(urls![i].type, for: .normal)
+            button.tag = i
+            button.addTarget(self, action: #selector(presentSafariVC), for: .touchUpInside)
+        }
         
         guard let url = URL(string: "https://www.youtube.com/embed/\(model.youtubeOverview.id.videoId!)") else { return }
         
         webView.load(URLRequest(url: url))
     }
     
-    func presentSafariVC(from url: URL) {
-        let safariVC = SFSafariViewController(url: url)
-        safariVC.preferredBarTintColor = .systemGreen
-        present(safariVC, animated: true)
+    @objc func presentSafariVC(sender: UIButton) {
+        if sender.tag == 0 {
+            guard let url = URL(string: urls![sender.tag].url!) else { return }
+            let safariVC = SFSafariViewController(url: url)
+            present(safariVC, animated: true)
+        } else {
+            guard let url = URL(string: urls![sender.tag].url!) else { return }
+            let safariVC = SFSafariViewController(url: url)
+            present(safariVC, animated: true)
+        }
+        
     }
     
     func configureConstraints() {
@@ -105,13 +146,18 @@ class CharacterPreviewVC: UIViewController {
             overviewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
             
             detailsButton.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 20),
-            detailsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            detailsButton.widthAnchor.constraint(equalToConstant: 140),
+            detailsButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            detailsButton.widthAnchor.constraint(equalToConstant: 100),
             detailsButton.heightAnchor.constraint(equalToConstant: 40),
             
+//            wikiButton.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 20),
+//            wikiButton.leadingAnchor.constraint(equalTo: detailsButton.trailingAnchor, constant: 20),
+//            wikiButton.widthAnchor.constraint(equalToConstant: 100),
+//            wikiButton.heightAnchor.constraint(equalToConstant: 40),
+            
             comicButton.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 20),
-            comicButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            comicButton.widthAnchor.constraint(equalToConstant: 140),
+            comicButton.leadingAnchor.constraint(equalTo: detailsButton.trailingAnchor, constant: 20),
+            comicButton.widthAnchor.constraint(equalToConstant: 100),
             comicButton.heightAnchor.constraint(equalToConstant: 40),
         ])
     }

@@ -28,5 +28,6 @@ struct Thumbnail: Codable {
 }
 
 struct URLElement: Codable {
+    let type: String?
     let url: String?
 }

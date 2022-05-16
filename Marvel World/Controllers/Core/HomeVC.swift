@@ -63,6 +63,18 @@ class HomeVC: UIViewController {
             }
         }
     }
+    
+    func downloadAt(indexPath: IndexPath) {
+//        DataPersistence.shared.downloadCharacter(model: characters[indexPath.row]) { result in
+//            switch result {
+//            case .success():
+//                print("Character Download Successful!")
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+        print("Character Download Successful!")
+    }
 
 }
 
@@ -101,13 +113,23 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
                 DispatchQueue.main.async {
 //                    print("INININ")
                     let vc = CharacterPreviewVC()
-                    vc.configure(with: CharacterPreviewModel(name: character_name, description: character_description, youtubeOverview: videoElement))
+                    vc.configure(with: CharacterPreviewModel(name: character_name, description: character_description, urls: character.urls, youtubeOverview: videoElement))
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let downloadAction = UIAction(title: "Download", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
+                self.downloadAt(indexPath: indexPath)
+            }
+            return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction])
+        }
+        return config
     }
     
 }
