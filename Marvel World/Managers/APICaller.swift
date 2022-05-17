@@ -35,7 +35,7 @@ class APICaller {
     func getCharacters(completion: @escaping(Result<[Character], Error>) -> Void) {
         let ts = String(Date().timeIntervalSince1970)
         let hash = MD5(string: "\(ts)\(API_KEY_Privat)\(API_KEY_Public)")
-        let endpoint = "\(baseURL)/characters?limit=5&orderBy=-modified&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
+        let endpoint = "\(baseURL)/characters?limit=100&orderBy=-modified&ts=\(ts)&apikey=\(API_KEY_Public)&hash=\(hash)"
         
         guard let url = URL(string: endpoint) else { return }
         
@@ -51,7 +51,7 @@ class APICaller {
                 let decoder = JSONDecoder()
                 let results = try decoder.decode(CharacterResponse.self, from: data)
                 completion(.success(results.data.results))
-                print(results.data.results)
+//                print(results.data.results)
                 
             } catch {
                 completion(.failure(APIError.failedToGetData))
@@ -99,7 +99,7 @@ class APICaller {
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
 //        print(query)
         let endpoint = "\(YouTube_baseURL)q=\(query)&key=\(YouTube_API_KEY2)"
-        print(endpoint)
+//        print(endpoint)
         guard let url = URL(string: endpoint) else {
             print("Youtube URL error")
             return

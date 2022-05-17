@@ -77,30 +77,36 @@ extension DownloadsVC: UITableViewDelegate, UITableViewDataSource {
         150
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        
-//        let character = characters[indexPath.row]
-//        guard let character_name = character.name, let character_description = character.resultDescription
-//        else {
-//            return
-//        }
-//        APICaller.shared.getMovies(query: character_name + " variants comics history") { [weak self] result in
-//            guard let self = self else { return }
-////            print("ININ")
-//            switch result {
-//            case .success(let videoElement):
-//                DispatchQueue.main.async {
-////                    print("INININ")
-//                    let vc = CharacterPreviewVC()
-//                    vc.configure(with: CharacterPreviewModel(name: character_name, description: character_description, urls: character.urls, youtubeOverview: videoElement))
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let character = characters[indexPath.row]
+        guard let character_name = character.name, let character_description = character.resultDescription
+        else {
+            return
+        }
+        APICaller.shared.getMovies(query: character_name + " variants comics history") { [weak self] result in
+            guard let self = self else { return }
+//            print("ININ")
+            switch result {
+            case .success(let videoElement):
+                DispatchQueue.main.async {
+//                    print("INININ")
+                    let vc = CharacterPreviewVC()
+//                    print(character.name)
+//                    print(String(data: , encoding: .utf8)!)
+                    guard let urls = try? JSONDecoder().decode([URLElement].self, from: (character.urls?.url)!) else {
+                        return
+                    }
+                    print(urls)
+                    vc.configure(with: CharacterPreviewModel(name: character_name, description: character_description, urls: urls, youtubeOverview: videoElement))
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {

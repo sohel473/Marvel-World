@@ -59,7 +59,7 @@ class HomeVC: UIViewController {
                     self.characterTable.reloadData()
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                print(error)
             }
         }
     }

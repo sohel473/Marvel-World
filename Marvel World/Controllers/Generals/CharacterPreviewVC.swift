@@ -103,8 +103,6 @@ class CharacterPreviewVC: UIViewController {
         titleLabel.text = model.name
         overviewLabel.text = model.description == "" ? "No description available for this character" : model.description
         self.urls = model.urls
-        print(model.name)
-        print(urls!)
         
         for (i, button) in [detailsButton, comicButton].enumerated() {
             button.setTitle(urls![i].type, for: .normal)
