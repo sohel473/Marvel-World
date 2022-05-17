@@ -45,6 +45,18 @@ class SearchResultVC: UIViewController {
         searchResultCollectionView.frame = view.bounds
     }
     
+    func downloadAt(indexPath: IndexPath) {
+        DataPersistence.shared.downloadCharacter(model: characters[indexPath.row]) { result in
+            switch result {
+            case .success():
+                print("Character Download Successful!")
+            case .failure(let error):
+                print(error)
+            }
+        }
+//        print("Character Download Successful!")
+    }
+    
 }
 
 extension SearchResultVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -84,5 +96,15 @@ extension SearchResultVC: UICollectionViewDelegate, UICollectionViewDataSource {
             }
         }
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let downloadAction = UIAction(title: "Download", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
+                self.downloadAt(indexPath: indexPath)
+            }
+            return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction])
+        }
+        return config
     }
 }

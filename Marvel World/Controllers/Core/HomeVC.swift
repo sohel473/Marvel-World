@@ -41,7 +41,7 @@ class HomeVC: UIViewController {
         
         searchController.searchResultsUpdater = self
         
-        fetchDiscoverMovies()
+        fetchCharacters()
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,12 +49,12 @@ class HomeVC: UIViewController {
         characterTable.frame = view.bounds
     }
     
-    private func fetchDiscoverMovies() {
+    private func fetchCharacters() {
         APICaller.shared.getCharacters { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let titles):
-                self.characters = titles
+            case .success(let characters):
+                self.characters = characters
                 DispatchQueue.main.async {
                     self.characterTable.reloadData()
                 }
@@ -65,15 +65,15 @@ class HomeVC: UIViewController {
     }
     
     func downloadAt(indexPath: IndexPath) {
-//        DataPersistence.shared.downloadCharacter(model: characters[indexPath.row]) { result in
-//            switch result {
-//            case .success():
-//                print("Character Download Successful!")
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-        print("Character Download Successful!")
+        DataPersistence.shared.downloadCharacter(model: characters[indexPath.row]) { result in
+            switch result {
+            case .success():
+                print("Character Download Successful!")
+            case .failure(let error):
+                print(error)
+            }
+        }
+//        print("Character Download Successful!")
     }
 
 }
@@ -101,8 +101,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let character = characters[indexPath.row]
+//        print(character.name)
+//        print(character.description)
         guard let character_name = character.name, let character_description = character.description
         else {
+            print("Cant get the movies")
             return
         }
         APICaller.shared.getMovies(query: character_name + " variants comics history") { [weak self] result in
