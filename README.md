@@ -1,2 +1,2 @@
 # Marvel-World
-An iOS app for Marvel Lovers, using UIKit, CoreML, without StoryBoard, where users can learn about Marvel characters.
+An iOS app for Marvel Lovers, using UIKit, CoreData, without StoryBoard, where users can learn about Marvel characters.
