@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D15ABC02832578500B81971 /* DataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D15ABBF2832578500B81971 /* DataPersistence.swift */; };
 		7D8B163A2831033C0047D5CB /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B16392831033C0047D5CB /* APICaller.swift */; };
 		7D8B163E28310C640047D5CB /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B163D28310C640047D5CB /* Character.swift */; };
 		7DA029E7283153F200D55703 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA029E6283153F200D55703 /* HomeVC.swift */; };
@@ -28,11 +27,11 @@
 		7DA3E3E52830EE6700DA4C89 /* DownloadsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3E3E42830EE6700DA4C89 /* DownloadsVC.swift */; };
 		7DA3E3E92830FA8F00DA4C89 /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3E3E82830FA8F00DA4C89 /* CollectionViewTableViewCell.swift */; };
 		7DA3E3EB2830FF7F00DA4C89 /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA3E3EA2830FF7F00DA4C89 /* TitleCollectionViewCell.swift */; };
+		7DA66B4B28909A7D00DA2805 /* DataPersistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA66B4A28909A7D00DA2805 /* DataPersistance.swift */; };
 		7DB89C78283181710096D6E0 /* CharacterPreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB89C77283181710096D6E0 /* CharacterPreviewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7D15ABBF2832578500B81971 /* DataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataPersistence.swift; path = ../../../../../Downloads/DataPersistence.swift; sourceTree = "<group>"; };
 		7D8B16392831033C0047D5CB /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		7D8B163D28310C640047D5CB /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		7DA029E6283153F200D55703 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -53,6 +52,7 @@
 		7DA3E3E42830EE6700DA4C89 /* DownloadsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsVC.swift; sourceTree = "<group>"; };
 		7DA3E3E82830FA8F00DA4C89 /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
 		7DA3E3EA2830FF7F00DA4C89 /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		7DA66B4A28909A7D00DA2805 /* DataPersistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistance.swift; sourceTree = "<group>"; };
 		7DB89C77283181710096D6E0 /* CharacterPreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPreviewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				7D8B16392831033C0047D5CB /* APICaller.swift */,
-				7D15ABBF2832578500B81971 /* DataPersistence.swift */,
+				7DA66B4A28909A7D00DA2805 /* DataPersistance.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -263,9 +263,9 @@
 				7DA3E3B42830E8D000DA4C89 /* SceneDelegate.swift in Sources */,
 				7DB89C78283181710096D6E0 /* CharacterPreviewVC.swift in Sources */,
 				7D8B163E28310C640047D5CB /* Character.swift in Sources */,
-				7D15ABC02832578500B81971 /* DataPersistence.swift in Sources */,
 				7DA029F128315D0000D55703 /* YoutubeSearchResponse.swift in Sources */,
 				7DA029ED2831580300D55703 /* CharacterViewModel.swift in Sources */,
+				7DA66B4B28909A7D00DA2805 /* DataPersistance.swift in Sources */,
 				7DA3E3BC2830E8D000DA4C89 /* Marvel_World.xcdatamodeld in Sources */,
 				7DA029EF28315CC400D55703 /* CharacterPreviewModel.swift in Sources */,
 				7DA3E3EB2830FF7F00DA4C89 /* TitleCollectionViewCell.swift in Sources */,
